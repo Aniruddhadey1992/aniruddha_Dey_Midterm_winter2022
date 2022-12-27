@@ -1,22 +1,33 @@
 package design;
 
-public class FortuneEmployee {
+import java.util.HashMap;
+import java.util.Map;
 
-	/**
-	 * FortuneEmployee class has a main methods where you will be able to create Object from
-	 * EmployeeInfo class to use fields and attributes.Demonstrate as many methods as possible 
-	 * to use with proper business work flow.Think as a Software Architect, Product Designer and 
-	 * as a Software Developer.(employee.info.system) package is given as an outline,you need to elaborate
-	 * more to design an application that will meet for fortune 500 Employee Information
-	 * Services.
-	 *
-	 * Use any databases[MongoDB, Oracle, MySql] to store data and retrieve data.
-	 *
-	 **/
+class DetermineLargestWord {
 	public static void main(String[] args) {
-		
-
-
+        /*
+         Implement to Find the length and longest word in the given sentence below.
+         Should return "10 biological".
+         */
+		String s="Human brain is a biological learning machine";
+		Map<Integer, String> wordNLength = findTheLargestWord(s);
+		//implement
+		System.out.println(wordNLength);
 	}
 
+	public static Map<Integer, String> findTheLargestWord(String wordGiven){
+		Map<Integer, String> map = new HashMap<Integer, String>();
+		String st = "";
+		//implement
+
+		String[] numOfWords = wordGiven.split(" ");
+		for (int i = 0; i < numOfWords.length; i++) {
+			if (numOfWords[i].length() > st.length()) {
+				st = numOfWords[i];
+			}
+		}
+
+		map.put(st.length(), st);
+		return map;
+	}
 }
