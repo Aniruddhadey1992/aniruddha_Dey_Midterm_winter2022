@@ -1,5 +1,9 @@
 package string.problems;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+
 public class DuplicateWord {
 
     public static void main(String[] args) {
@@ -8,32 +12,45 @@ public class DuplicateWord {
          * Also Find the average length of the words.
          */
 
-        String string = "Java is a programming Language. Java is also an Island of Indonesia. Java is widely used language";
+        String st = "Java is a programming Language. Java is also an Island of Indonesia. Java is widely used language";
+
+        Map<String, Integer> words=new HashMap<String, Integer>();
+
+        st=st.toLowerCase();
+
+        String[] stArray =st.split("[,. _@!:;]+");
+
+        int totalWords=0;
+        int totalLetters=0;
 
 
-        int count;
 
-        //Converts the string into lowercase
-        string = string.toLowerCase();
 
-        //Split the string into words using built-in function
-        String words[] = string.split(" ");
 
-        System.out.println("Duplicate words in a given string : ");
-        for (int i = 0; i < words.length; i++) {
-            count = 1;
-            for (int j = i + 1; j < words.length; j++) {
-                if (words[i].equals(words[j])) {
-                    count++;
-                    //Set words[j] to 0 to avoid printing visited word
-                    words[j] = "0";
-                }
-            }
 
-            //Displays the duplicate word if count is greater than 1
-            if (count > 1 && words[i] != "0")
-                System.out.println(words[i]);
+        for(int i=0;i< stArray.length;i++){
+            //System.out.println(stArray[i]);
+            totalWords++;
+            totalLetters=totalLetters+stArray[i].length();
+
+            if(words.containsKey(stArray[i]))
+                words.compute(stArray[i], (k,v)-> v+1);
+            else
+                words.put(stArray[i],1);
         }
 
+        System.out.println("The average word length is: "+totalLetters/totalWords +" letters");
+        System.out.println(words);
+
+
+/*
+        String  largest = stringArray[0];
+        for(int i=1;i<stringArray.length;i++){
+            if( largest.length()<stringArray[i].length())
+                largest=stringArray[i];
+        }
+        */
+
     }
+
 }

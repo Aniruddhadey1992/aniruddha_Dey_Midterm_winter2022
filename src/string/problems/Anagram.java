@@ -1,7 +1,6 @@
 package string.problems;
 
 import java.util.Arrays;
-import java.util.Locale;
 
 public class Anagram {
 
@@ -10,37 +9,28 @@ public class Anagram {
         //same character but in different order.For example,"CAT" and "ACT", "ARMY" and "MARY".
 
 
-        String str1 = "Heart";
-        String str2 = "Earth";
+        System.out.println(isAnagram("CAaat","ACATA"));
+    }
 
-        // Set both strings to lower case because their letters will switch.
-        str1 = str1.toLowerCase();
-        str2 = str2.toLowerCase();
+    public static boolean isAnagram(String s, String m){
+        s=s.toLowerCase();
+        m=m.toLowerCase();
 
-        // check if the length of 2 words are the same
-        if(str1.length() == str2.length()) {
+        if(s.length()!=m.length())
+            return false;
+        // else if()
+        char[] temp1 = s.toCharArray();
+        char[] temp2 = m.toCharArray();
 
-            // convert strings to char array
-            char[] charArray1 = str1.toCharArray();
-            char[] charArray2 = str2.toCharArray();
+        Arrays.sort(temp1);
+        Arrays.sort(temp2);
 
-            // sort the char array
-            Arrays.sort(charArray1);
-            Arrays.sort(charArray2);
 
-            // if sorted char arrays are same
-            // then the string is anagram
-            boolean result = Arrays.equals(charArray1, charArray2);
-
-            if(result==true) {
-                System.out.println(str1 + " and " + str2 + " are anagram.");
-            }
-            else {
-                System.out.println(str1 + " and " + str2 + " are not anagram.");
-            }
+        for(int i=0;i<temp1.length;i++) {
+            if(temp1[i]!=temp2[i])
+                return false;
         }
-        else {
-            System.out.println(str1 + " and " + str2 + " are not anagram.");
-        }
+
+        return true;
     }
 }
